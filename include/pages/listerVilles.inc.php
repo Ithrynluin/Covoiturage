@@ -1,11 +1,12 @@
 <h1>Liste des villes</h1>
 <?php
 $pdo=new Mypdo();
-$listeVilles=new VilleManager(pdo);
+$villeManager=new VilleManager($pdo);
+$listeVilles=$villeManager->getAllVilles();
 
 $nb=count($listeVilles);
 ?>
-<p>Actuellement	villes <?php echo $nb ?>sont enregistrées</p>
+<p>Actuellement	<?php echo $nb ?> villes sont enregistrées</p>
 <table>
 	<tr>
 		<th>Numéro</th>
@@ -17,12 +18,12 @@ $nb=count($listeVilles);
 		<tr>
 		<td>
 			<?php
-			echo $value.getVilNum();
+			echo $value->getVilNum();
 			?>
 		</td>
 		<td>
 			<?php
-			echo $value.getVilNom();
+			echo $value->getVilNom();
 			?>
 		</td>
 		</tr>
