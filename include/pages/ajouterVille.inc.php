@@ -19,7 +19,7 @@ if(empty($_POST['nom'])){ ?>
         if($retour == 0){?>
             <p>Erreur : La ville <?php echo $_POST['nom']; ?> n'a pas été ajoutée.</p>
 <?php   }else{ ?>
-            <p>La ville <strong>"<?php echo $_POST['nom']; ?>"</strong> a pas été ajoutée.</p>
+            <p>La ville <strong>"<?php echo $_POST['nom']; ?>"</strong> a été ajoutée.</p>
 <?php   }
     }
 } ?>
