@@ -36,5 +36,19 @@ class ParcoursManager{
         $requete->closeCursor();
         return $exist;
     }
+    
+    public function getAllParcours(){
+        $list = array();
+        $sql = "SELECT par_num, par_km, vil_num1, vil_num2 
+                    FROM parcours";
+        $requete = $this->db->prepare($sql);
+        
+        $requete->execute();
+        while($parcours = $requete->fetch(PDO::FETCH_OBJ)){
+            $list[] = new Parcours($parcours);
+        }
+        
+        return $list;
+    }
 	
 }

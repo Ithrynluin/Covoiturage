@@ -28,6 +28,18 @@ class VilleManager{
 		
 		return $listeVilles;
 	}
+    
+    public function getVille($num){
+        $sql='SELECT vil_num, vil_nom FROM ville WHERE vil_num = :num';
+        $requete=$this->db->prepare($sql);
+        $requete->bindValue(":num", $num);
+        $requete->execute();
+        $value = $requete->fetch(PDO::FETCH_ASSOC);
+        $ville = new Ville($value);
+        $requete->closeCursor();
+        
+        return $ville;
+    }
 }
 
 ?>
