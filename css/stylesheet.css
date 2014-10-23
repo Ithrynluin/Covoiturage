@@ -209,15 +209,20 @@ h1{
 	font-weight: bold;
 }
 
-
-
-
-
-
-
-#connect a{
-	color:#222222;
-	font-weight:bold;
-	text-decoration: none;	
+table{
+	margin: auto;
+	border-collapse: collapse;
+	width: 80%;
 }
-#connect a :visited{
+
+td, th{
+	text-align: center;
+}
+
+td{
+	border: 1px solid black;
+}
+
+th{
+	font-weight: bold;
+}
