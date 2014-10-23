@@ -44,7 +44,7 @@ INSERT INTO `departement` (`dep_num`, `dep_nom`, `vil_num`) VALUES
 (3, 'GEA', 7),
 (4, 'SRC', 7),
 (5, 'HSE', 5),
-(6, 'GÃ©nie civil', 16);
+(6, 'Génie civil', 16);
 
 -- --------------------------------------------------------
 
@@ -63,9 +63,9 @@ CREATE TABLE IF NOT EXISTS `division` (
 --
 
 INSERT INTO `division` (`div_num`, `div_nom`) VALUES
-(1, 'AnnÃ©e 1'),
-(2, 'AnnÃ©e 2'),
-(3, 'AnnÃ©e SpÃ©ciale'),
+(1, 'Année 1'),
+(2, 'Année 2'),
+(3, 'Année Spéciale'),
 (4, 'Licence Professionnelle');
 
 -- --------------------------------------------------------
@@ -112,10 +112,10 @@ CREATE TABLE IF NOT EXISTS `fonction` (
 
 INSERT INTO `fonction` (`fon_num`, `fon_libelle`) VALUES
 (1, 'Directeur'),
-(2, 'Chef de dÃ©partement'),
+(2, 'Chef de département'),
 (3, 'Technicien'),
-(4, 'SecrÃ©taire'),
-(5, 'IngÃ©nieur'),
+(4, 'Secrétaire'),
+(5, 'Ingénieur'),
 (6, 'Imprimeur'),
 (7, 'Enseignant'),
 (8, 'Chercheur');
@@ -261,8 +261,8 @@ INSERT INTO `ville` (`vil_num`, `vil_nom`) VALUES
 (5, 'Tulle'),
 (6, 'Brive'),
 (7, 'Limoges'),
-(8, 'GuÃ©ret'),
-(9, 'PÃ©rigueux'),
+(8, 'Guéret'),
+(9, 'Périgueux'),
 (10, 'Bordeaux'),
 (11, 'Paris'),
 (12, 'Toulouse'),
