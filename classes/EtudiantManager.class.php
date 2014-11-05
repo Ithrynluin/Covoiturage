@@ -1,4 +1,33 @@
 <?php
 class EtudiantManager{
+	private $db;
+
 	
+	public function __construct($db) {
+		$this->db = $db;
+	}
+	
+	public function add ($etudiant) {
+		$requete = $this->db->prepare(
+		'INSERT INTO etudiant(dep_num, div_num) VALUES (:dep_num, :div_num);');
+		$requete->binValue(':dep_num', $etudiant->getDep_num());
+		$requete->binValue(':div_num', $etudiant->getDiv_num());
+		
+		$retour=$requete->execute();
+		return $retour;
+	}
+	
+	public function getAllEtudiant() {
+		$listeEtudiants = array();
+		$sql='SELECT per_num, dep_num, div_num FROM etudiant ORDER BY per_num';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		while ($etudiant = $requete->fetch(PDO::FETCH_ASSOC)) {
+			$listeEtudiants[] = new Etudiant($etudiant);
+		}
+		$requete->closeCursor();
+		
+		return $listeEtudiants;
+	}
 }
+?>
