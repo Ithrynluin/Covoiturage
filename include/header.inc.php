@@ -28,7 +28,14 @@
 			</div>
 			</div>
 			<div id="connect">
-				<a href="index.php?page=11">Connexion</a>
+<?php           if(empty($_SESSION['utilisateur'])){ ?>
+                    <a href="index.php?page=11">Connexion</a>
+<?php           }else{ ?>
+                    <a href="index.php?page=12">Utilisateur : <?php echo $_SESSION['utilisateur'] ?> Déconnexion</a>
+<?php           }
+               
+ ?>
+				
 			</div>
 	</div>
 	

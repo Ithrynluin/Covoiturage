@@ -55,7 +55,8 @@ if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
 <?php       }else{ 
                 $_SESSION['utilisateur'] = $_POST['user']; ?>
                 <p>Connexion effectué</p>
-<?php       }
+<?php           header($_SERVER['HTTP_REFERER']);       
+            }
             
         }
     
