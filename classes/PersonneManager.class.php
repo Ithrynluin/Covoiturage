@@ -33,5 +33,15 @@ class PersonneManager{
 		
 		return $listePersonnes;
 	}
+    
+    public function getPersonneLogin($login){
+        $sql = "SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd
+                FROM personne WHERE per_login = :login";
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(":login", $login);
+        $requete->execute();
+        $personne = $requete->fetch(PDO::FETCH_ASSOC);
+        return $personne;
+    }
 }
 ?>
