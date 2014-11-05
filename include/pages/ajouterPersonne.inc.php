@@ -35,13 +35,28 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
     $pdo = new Mypdo(); 
     $personneManager = new PersonneManager($pdo);
     if(!empty($_POST['nom']) && !empty($_POST['tel']) && !empty($_POST['prenom']) & !empty($_POST['mail']) && !empty($_POST['login']) && !empty($_POST['mdp'])){
+        //Si la perssonne = etudiant
+        $divisionManager = new DivisionManager($pdo);
+        if($_POST['etudiant'] != null) { ?>
+        	<form action="index.php?page=1" method="post">
+        		<label for='annee'>Année : </label>
+        		<select name="annee" id="annnee" class="champ">
+				<?php $listDivision = $divisionManager->getAllDivisions();
+            	foreach ($listDivision as $key => $value) { ?>
+                <option value=<?php echo "'".$value->getDiv_num()."'"; ?>><?php echo $value->getDiv_nom(); ?></option>
+				<?php } ?>        
+            </select>
+        	</form>
+       <?php }
+        
+        //Si la personne = salarie	
+		/*
         $pers = new Personne(array('per_nom' => $_POST['nom'], 'per_prenom' => $_POST['prenom'], 'per_tel' => $_POST['tel'], 'per_mail' => $_POST['mail'], 'per_login' => $_POST['login'], 'per_pwd' => $_POST['mdp']));
-		//faire de meme avec les autres variables
         $retour = $personneManager->add($pers);
         if($retour == 0){?>
             <p>Erreur : La personne <?php echo $_POST['nom']; ?> n'a pas été ajoutée.</p>
 <?php   }else{ ?>
             <p>La personne <strong>"<?php echo $_POST['nom']; ?>"</strong> a été ajoutée.</p>
-<?php   }
+<?php }*/
     }
 } ?>
