@@ -9,7 +9,7 @@ class DivisionManager{
 	public function add ($division) {
 		$requete = $this->db->prepare(
 		'INSERT INTO division (div_nom) VALUES (:nom);');
-		$requete->bindValue(':nom', $division->getDivNom());
+		$requete->bindValue(':nom', $division->getDiv_nom());
 		
 		$retour=$requete->execute();
 		return $retour;

@@ -26,7 +26,7 @@ class Division{
 
 	/**
     * Get div_num
-    * @return VariableType
+    * @return int
     */
     public function getDiv_num(){
         return $this->div_num;
@@ -34,7 +34,7 @@ class Division{
 
 	/**
     * Set div_num
-    * @param VariableType $div_num
+    * @param int $div_num
     */
     public function setDiv_num($div_num){
         $this->div_num = $div_num;
@@ -42,7 +42,7 @@ class Division{
 
 	/**
     * Get div_nom
-    * @return int
+    * @return string
     */
     public function getDiv_nom(){
         return $this->div_nom;
