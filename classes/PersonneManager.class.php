@@ -40,7 +40,13 @@ class PersonneManager{
         $requete = $this->db->prepare($sql);
         $requete->bindValue(":login", $login);
         $requete->execute();
-        $personne = $requete->fetch(PDO::FETCH_ASSOC);
+        $ligne = $requete->fetch(PDO::FETCH_ASSOC);
+        if(!$ligne){
+            $personne = false;
+        }else{
+            $personne = new Personne($ligne);
+        }
+        
         return $personne;
     }
 }
