@@ -10,12 +10,12 @@ class PersonneManager{
 	public function add ($personne) {
 		$requete = $this->db->prepare(
 		'INSERT INTO personne(per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd) VALUES (:nom, :prenom, :tel, :mail, :login, :pwd);');
-		$requete->binValue(':nom', $personne->getPer_nom());
-		$requete->binValue(':prenom', $personne->getPer_prenom());
-		$requete->binValue(':tel', $personne->getPer_tel());
-		$requete->binValue(':mail', $personne->getPer_mail());
-		$requete->binValue(':login', $personne->getPer_login());
-		$requete->binValue(':pwd', $personne->getPer_pwd());
+		$requete->bindValue(':nom', $personne->getPer_nom());
+		$requete->bindValue(':prenom', $personne->getPer_prenom());
+		$requete->bindValue(':tel', $personne->getPer_tel());
+		$requete->bindValue(':mail', $personne->getPer_mail());
+		$requete->bindValue(':login', $personne->getPer_login());
+		$requete->bindValue(':pwd', $personne->getPer_pwd());
 		
 		$retour=$requete->execute();
 		return $retour;
