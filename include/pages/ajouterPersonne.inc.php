@@ -37,15 +37,24 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
     if(!empty($_POST['nom']) && !empty($_POST['tel']) && !empty($_POST['prenom']) & !empty($_POST['mail']) && !empty($_POST['login']) && !empty($_POST['mdp'])){
         //Si la perssonne = etudiant
         $divisionManager = new DivisionManager($pdo);
+		$departementManager = new DepartementManager($pdo);
         if($_POST['etudiant'] != null) { ?>
         	<form action="index.php?page=1" method="post">
         		<label for='annee'>Année : </label>
         		<select name="annee" id="annnee" class="champ">
-				<?php $listDivision = $divisionManager->getAllDivisions();
-            	foreach ($listDivision as $key => $value) { ?>
-                <option value=<?php echo "'".$value->getDiv_num()."'"; ?>><?php echo $value->getDiv_nom(); ?></option>
-				<?php } ?>        
-            </select>
+					<?php $listDivision = $divisionManager->getAllDivisions();
+            		foreach ($listDivision as $key => $value) { ?>
+                	<option value=<?php echo "'".$value->getDiv_num()."'"; ?>><?php echo $value->getDiv_nom(); ?></option>
+					<?php } ?>        
+            	</select>
+            	
+            	<label for='departement'>Département : </label>
+        		<select name="departement" id="departement" class="champ">
+					<?php $listDepartement = $departementManager->getAllDepartements();
+            		foreach ($listDepartement as $key => $value) { ?>
+                	<option value=<?php echo "'".$value->getDep_num()."'"; ?>><?php echo $value->getDep_nom(); ?></option>
+					<?php } ?>        
+            	</select>
         	</form>
        <?php }
         
