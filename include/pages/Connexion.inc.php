@@ -1,6 +1,8 @@
 <h1>Pour vous connecter</h1>
 <?php 
+require_once("include/functions.inc.php");
 if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
+    setPagePrecedente("http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] );
 ?>
 <form action="index.php?page=11" method="post">
 	<p>
@@ -30,7 +32,7 @@ if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
     
     $bonneRep = $_SESSION['nb1'] + $_SESSION['nb2'];
     if($bonneRep != $_POST['resultat']){ ?>
-        <p>La réponse n'est corecte</p>
+        <p>La réponse n'est pas corecte</p>
         <p><a href="index.php?page=11">Retour connexion</a></p>
 <?php
     }else{
@@ -55,7 +57,7 @@ if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
 <?php       }else{ 
                 $_SESSION['utilisateur'] = $_POST['user']; ?>
                 <p>Connexion effectué</p>
-<?php           header('Location: '.$_SERVER['HTTP_REFERER']);    
+<?php           header('Location: '.getPagePrecedente("http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] ));    
             }
             
         }
