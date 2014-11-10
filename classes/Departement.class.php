@@ -17,6 +17,8 @@ class Departement{
 				
 				case 'dep_nom': $this->setDep_nom($valeur); break;
 				
+				case 'vil_num': $this->setVil_num($valeur); break;
+				
 				default: 
 					echo "Erreur case : fonction affecte - classe Departement ! \n";
 					break;
@@ -71,4 +73,4 @@ class Departement{
     public function setVil_num($vil_num){
         $this->vil_num = $vil_num;
     }	
-}
+} ?>
