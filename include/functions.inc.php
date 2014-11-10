@@ -17,8 +17,6 @@
      */
      function setPagePrecedente($pageActuel){
          $pagePrecedente = $_SERVER['HTTP_REFERER'];
-         echo $pagePrecedente;
-         echo $pageActuel;
          if($pageActuel != $pagePrecedente){
              $_SESSION[$pageActuel] = $pagePrecedente;
          }
