@@ -6,11 +6,11 @@ if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
 ?>
 <form action="index.php?page=11" method="post">
 	<p>
-		<label fo="user">Nom d'utilisateur : </label>
+		<label fo="user" class="labelC">Nom d'utilisateur : </label>
 		<input type="text" id="user" name="user" class="champ"/>
 	</p>
 	<p>
-		<label for="pass">Mot de passe : </label>
+		<label for="pass" class="labelC">Mot de passe : </label>
 		<input type="password" id="pass" name="pass" class="champ"/>
 	</p>
 	<p>
@@ -20,7 +20,7 @@ if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
         $_SESSION['nb1'] = $nb1;
         $_SESSION['nb2'] = $nb2;
 		?>
-		<label for="resultat"><img src=<?php echo '"image/nb/'.$nb1.'.jpg""' ?> /> + <img src=<?php echo '"image/nb/'.$nb2.'.jpg""' ?> /> = </label>
+		<label for="resultat" class="labelC"><img src=<?php echo '"image/nb/'.$nb1.'.jpg""' ?> /> + <img src=<?php echo '"image/nb/'.$nb2.'.jpg""' ?> /> = </label>
 		<input type="text" id="resultat" name="resultat" class="champ"/>
 	</p>
 	<p>

@@ -138,14 +138,15 @@ body{
 .centreImage {
     display: block;
     margin-left: auto;
-    margin-right: auto }
+    margin-right: auto 
+}
     
 .centrerBlock{
 	margin:auto;
 	width:200px;	
 }
 .labelC{
-	display: inline; 
+	display: block; 
 	padding-top:4px; 
 	margin-left:20px; 
 }
@@ -179,9 +180,6 @@ body{
 	box-shadow:1px 1px 3px #000000 inset;
 }
 
-form label {
-	text-align: right;
-}
 
 .champ:focus{
 	box-shadow:1px 1px 5px #000000 inset;
@@ -190,6 +188,15 @@ form label {
 label{
 	font-size:12pt;
    font-weight:bold;	
+}
+
+form table td{
+	border: 0px;
+	text-align: left;
+}
+
+form table label {
+	padding-left: 5px;
 }
 
 h1{
@@ -201,8 +208,10 @@ h1{
 	}
 
 .espaceNB{
-	font-size:30px;position:relative;top:-8px;
-	}
+	font-size:30px;
+	position:relative;
+	top:-8px;
+}
 	
 * a:hover{
 
