@@ -46,9 +46,9 @@ if(empty($_POST['vil1']) || empty($_POST['vil2']) || empty($_POST['km'])){ ?>
         $parcours = new Parcours(array('par_km' => $_POST['km'], 'vil_num1' => $vil1, 'vil_num2' => $vil2));
         $ligne = $parcoursManager->add($parcours);
         if($ligne == 0 ){ ?>
-        <p>Erreur lors de l'insertion.</p>
+        <p><img src="image/erreur.png" /> Erreur lors de l'insertion.</p>
 <?php   }else{ ?>
-        <p>Le parcours a été ajouté.</p>
+        <p><img src="image/valid.png"/> Le parcours a été ajouté.</p>
 <?php   }
     }
 }?>
