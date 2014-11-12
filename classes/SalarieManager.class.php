@@ -10,8 +10,8 @@ class SalarieManager{
 	public function add ($salarie) {
 		$requete = $this->db->prepare(
 		'INSERT INTO salarie(sal_telprof, fon_num) VALUES (:sal_telprof, :fon_num);');
-		$requete->binValue(':sal_telprof', $salarie->getSal_telprof());
-		$requete->binValue('fon_num', $salarie->getFon_num());
+		$requete->bindValue(':sal_telprof', $salarie->getSal_telprof());
+		$requete->bindValue(':fon_num', $salarie->getFon_num());
 		
 		$retour=$requete->execute();
 		return $retour;
