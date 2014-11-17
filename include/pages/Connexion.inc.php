@@ -1,6 +1,5 @@
 <h1>Pour vous connecter</h1>
 <?php 
-require_once("include/functions.inc.php");
 if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
     setPagePrecedente("http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] );
 ?>
@@ -55,7 +54,8 @@ if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
                 <p>Le nom de la personne et/ou le mot de passe sont incorrecte</p>
                 <p><a href="index.php?page=11">Retour connexion</a></p>
 <?php       }else{ 
-                $_SESSION['utilisateur'] = $_POST['user']; ?>
+                $_SESSION['utilisateur'] = $_POST['user'];
+                $_SESSION['per_num'] = $personne->getPer_num();  ?>
                 <p>Connexion effectué</p>
 <?php           header('Location: '.getPagePrecedente("http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] ));    
             }
