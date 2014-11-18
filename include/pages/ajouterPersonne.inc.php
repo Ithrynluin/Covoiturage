@@ -1,14 +1,10 @@
 <?php
-$titre = "une personne"; ?>
-
-<h1>Ajouter <?php echo $titre ?></h1>
-<?php
 $pdo = new Mypdo();
 
 if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || empty($_POST['mail']) || empty($_POST['login']) || empty($_POST['mdp']) || empty($_POST['type'])){
 	//Vérification que les données ont bien été complètement rempli dans chaque formulaire (seul la zone du téléphone professionnel peut être vide après le 1er formulaire)
-	if(empty($_POST['telpro'])) { 
-		$titre="une personne"; //titre de la page	?>
+	if(empty($_POST['telpro'])) { ?>
+		<h1>Ajouter une personne</h1> <!-- titre de la page -->
 		
 		<form action="index.php?page=1" method="post">
 		    <table>
@@ -52,9 +48,10 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
 			$perNum= $retour;
 			
 			//ajout dans la table étudiant
-			if(!empty($_POST['annee']) && !empty($_POST['departement'])) {
-				$titre = "un étudiant";	//titre de la page
-				 
+			if(!empty($_POST['annee']) && !empty($_POST['departement'])) { ?>
+				<h1>Ajouter un étudiant</h1> <!-- titre de la page -->
+				
+				<?php
 				$etudiant = new Etudiant(array('per_num' => $perNum,'dep_num' => $_POST['departement'], 'div_num' => $_POST['annee']));
 				$etudiantManager = new EtudiantManager($pdo);
 				$retour = $etudiantManager->add($etudiant);
@@ -66,9 +63,10 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
 		 	}
 		 	
 			//ajout dans la table salrié
-			if(!empty($_POST['telpro']) && !empty($_POST['fonction'])) {
-				$titre = "un salarié";	//titre de la page
-				 
+			if(!empty($_POST['telpro']) && !empty($_POST['fonction'])) { ?>
+				<h1>Ajouter un salarié</h1> <!-- titre de la page -->
+				
+				<?php
 				$salarie = new Salarie(array('per_num' => $perNum,'sal_telprof' => $_POST['telpro'], 'fon_num' => $_POST['fonction']));
 				$salarieManager = new SalarieManager($pdo);
 				$retour = $salarieManager->add($salarie);
@@ -84,9 +82,10 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
 	$_SESSION['pers'] = new Personne(array('per_nom' => $_POST['nom'], 'per_prenom' => $_POST['prenom'], 'per_tel' => $_POST['tel'], 'per_mail' => $_POST['mail'], 'per_login' => $_POST['login'], 'per_pwd' => $_POST['mdp'])); 
 	       	
 	        //Si la perssonne = etudiant
-	        if($_POST['type'] == "etudiant") { 
-	        	$titre = "un étudiant";	//titre de la page
-	       
+	        if($_POST['type'] == "etudiant") { ?>
+	        	<h1>Ajouter un étudiant</h1> <!-- titre de la page -->
+	       		
+	       		<?php
 	       		$divisionManager = new DivisionManager($pdo);
 				$departementManager = new DepartementManager($pdo);
 	        	?>
@@ -125,9 +124,10 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
 	       <?php }
 	        
 	        //Si la personne = salarie
-	       	if($_POST['type'] == "personnel") {
-	       		$titre = "un salarié";	//titre de la page
+	       	if($_POST['type'] == "personnel") { ?>
+	       		<h1>Ajouter un salarié</h1> <!-- titre de la page -->
 				 
+				<?php
 	       		$fonctionManager = new FonctionManager($pdo);
 	       		?>
 	       		
