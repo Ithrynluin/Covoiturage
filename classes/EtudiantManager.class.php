@@ -9,9 +9,10 @@ class EtudiantManager{
 	
 	public function add ($etudiant) {
 		$requete = $this->db->prepare(
-		'INSERT INTO etudiant(dep_num, div_num) VALUES (:dep_num, :div_num);');
-		$requete->binValue(':dep_num', $etudiant->getDep_num());
-		$requete->binValue(':div_num', $etudiant->getDiv_num());
+		'INSERT INTO etudiant(per_num, dep_num, div_num) VALUES (:per_num, :dep_num, :div_num);');
+		$requete->bindValue(':per_num', $etudiant->getPer_num());
+		$requete->bindValue(':dep_num', $etudiant->getDep_num());
+		$requete->bindValue(':div_num', $etudiant->getDiv_num());
 		
 		$retour=$requete->execute();
 		return $retour;
