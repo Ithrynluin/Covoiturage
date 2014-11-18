@@ -18,7 +18,12 @@ class PersonneManager{
 		$requete->bindValue(':pwd', $personne->getPer_pwd());
 		
 		$retour=$requete->execute();
-		return $retour;
+		if($retour == 0) {
+			$id = 0;
+		} else {
+			$id = $this->db->lastInsertId();
+		}
+		return $id;
 	}
 	
 	public function getAllPersonne() {
