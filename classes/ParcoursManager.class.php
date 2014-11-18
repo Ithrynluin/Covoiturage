@@ -51,4 +51,32 @@ class ParcoursManager{
         return $list;
     }
 	
+        public function getParcoursEtSensAvecVilles($vil_num1, $vil_num2){
+        $resultat = array();
+        $sql='Select par_num from parcours where vil_num1 = :vil_num1 and vil_num2 = :vil_num2';
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(':vil_num1', $vil_num1);
+        $requete->bindValue(':vil_num2', $vil_num2);
+        $requete->execute();
+        $ligne = $requete->fetch(PDO::FETCH_ASSOC);
+        if(!$ligne){
+            $sql='Select par_num from parcours where vil_num1 = :vil_num2 and vil_num2 = :vil_num1';
+            $requete = $this->db->prepare($sql);
+            $requete->bindValue(':vil_num1', $vil_num1);
+            $requete->bindValue(':vil_num2', $vil_num2);
+            $requete->execute();
+            $ligne = $requete->fetch(PDO::FETCH_ASSOC);
+            if(!$ligne){
+                $resultat = false;
+            }else{
+                $resultat['sens'] = 1;
+                $resultat['parcours'] = $ligne['par_num'];
+            }
+        }else{
+            $resultat['sens'] = 0;
+            $resultat['parcours'] = $ligne['par_num'];
+        }
+        return $resultat;
+    }
+    
 }
