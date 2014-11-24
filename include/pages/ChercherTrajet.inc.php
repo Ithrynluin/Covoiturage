@@ -28,7 +28,7 @@ if(empty($_POST['vildepart']) && empty($_POST['vilarr']) && empty($_POST['depart
                <td>Ville de départ : </td>
                <td><?php echo $villeDepart->getVilNom(); ?></td>
                
-               <td><label>Ville d'arrivée : <label>+</td>
+               <td><label>Ville d'arrivée : <label></td>
                <td>
                    <select name="vilarr" class="champ">
 <?php                   foreach ($listeVilleArrive as $value) { ?>
@@ -72,8 +72,40 @@ if(empty($_POST['vildepart']) && empty($_POST['vilarr']) && empty($_POST['depart
     $parEtSens = $parcoursManager->getParcoursEtSensAvecVilles($_SESSION['vildepart'], $_POST['vilarr']);
     $dateDebut = addJours($_POST['depart'], -$_POST['precision']);
     $dateFin = addJours($_POST['depart'], $_POST['precision']);
+    $heure = $_POST['heure'].":00:00";
     
     $proposeManager = new ProposeManager($pdo);
-    $liste = $proposeManager->getTrajetWithParam($parEtSens['parcours'], $dateDebut, $dateFin, $_POST['heure'], $parEtSens['sens']);
-    echo "<pre>";var_dump($liste);echo "</pre>";
+    $liste = $proposeManager->getTrajetWithParam($parEtSens['parcours'], $dateDebut, $dateFin, $heure, $parEtSens['sens']);
+    
+    $personneManager = new PersonneManager($pdo);
+    
+    if(empty($liste)){ ?>
+    <p>Aucun trajet trouvé</p>    
+<?php
+    }else{
+?>
+    <table>
+        <tr>
+            <th>Ville de départ</th>
+            <th>Ville d'arrivée</th>
+            <th>Date de départ</th>
+            <th>Heure de départ</th>
+            <th>Nb place(s)</th>
+            <th>Nom du covoitureur</th>
+        </tr>
+<?php   foreach ($liste as $value) { 
+        $personne = $personneManager->getPersonneNum($value->getPer_num()); ?>
+        <tr>
+            <td><?php echo $_SESSION['vildepart']; ?></td>
+            <td><?php echo $_POST['vilarr']; ?></td>
+            <td><?php echo getFrenchDate($value->getPro_date()); ?></td>
+            <td><?php echo $value->getPro_time(); ?></td>
+            <td><?php echo $value->getPro_place(); ?></td>
+            <td><?php echo $personne->getPer_nom(); ?></td>
+        </tr>
+<?php
+        } ?>
+    </table>
+<?php
+    }
 } ?>

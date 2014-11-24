@@ -54,6 +54,22 @@ class PersonneManager{
         
         return $personne;
     }
+    
+    public function getPersonneNum($num){
+        $sql = "SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd
+                FROM personne WHERE per_num = :num";
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(":num", $num);
+        $requete->execute();
+        $ligne = $requete->fetch(PDO::FETCH_ASSOC);
+        if(!$ligne){
+            $personne = false;
+        }else{
+            $personne = new Personne($ligne);
+        }
+        
+        return $personne;
+    }
 	
 	public function isEtudiant($num) {
 		$sql = "SELECT COUNT(*) FROM etudiant WHERE per_num = :num";
