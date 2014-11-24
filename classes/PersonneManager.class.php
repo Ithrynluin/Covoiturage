@@ -28,7 +28,7 @@ class PersonneManager{
 	
 	public function getAllPersonne() {
 		$listePersonnes = array();
-		$sql='SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM personne ORDER BY per_nom';
+		$sql='SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM personne ORDER BY per_nom, per_prenom, per_num';
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		while ($personne = $requete->fetch(PDO::FETCH_ASSOC)) {
@@ -54,5 +54,20 @@ class PersonneManager{
         
         return $personne;
     }
+	
+	public function isEtudiant($num) {
+		$sql = "SELECT COUNT(*) FROM etudiant WHERE per_num = :num";
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(":num", $num);
+		$requete->execute();
+		$ligne = $requete->fetch(PDO::FETCH_ASSOC);
+		if($ligne == 0) {
+			$etudiant = false;
+		}else {
+			$etudiant = true;
+		}
+		
+		return $etudiant;
+	}
 }
 ?>
