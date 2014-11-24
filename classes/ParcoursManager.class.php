@@ -51,7 +51,11 @@ class ParcoursManager{
         return $list;
     }
 	
-        public function getParcoursEtSensAvecVilles($vil_num1, $vil_num2){
+    /**
+     * Retourne un tableau avec le sens du parcours à l'index 'sens'
+     *          et le numéro du parcours à l'index 'parcours'.
+     */
+    public function getParcoursEtSensAvecVilles($vil_num1, $vil_num2){
         $resultat = array();
         $sql='Select par_num from parcours where vil_num1 = :vil_num1 and vil_num2 = :vil_num2';
         $requete = $this->db->prepare($sql);
