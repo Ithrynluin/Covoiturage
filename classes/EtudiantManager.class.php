@@ -30,5 +30,13 @@ class EtudiantManager{
 		
 		return $listeEtudiants;
 	}
+    
+    public function delete($num){
+        $sql = 'DELETE FROM etudiant WHERE per_num = :num';
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(":num", $num);
+        $retour = $requete->execute();
+        return $retour;
+    }
 }
 ?>

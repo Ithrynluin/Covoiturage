@@ -30,5 +30,13 @@ class SalarieManager{
 		
 		return $listeSalaries;
 	}
+    
+    public function delete($num){
+        $sql = 'DELETE FROM salarie WHERE per_num = :num';
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(":num", $num);
+        $retour = $requete->execute();
+        return $retour;
+    }
 }
 ?>
