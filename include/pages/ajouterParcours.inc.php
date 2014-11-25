@@ -42,6 +42,10 @@ if(empty($_POST['vil1']) || empty($_POST['vil2']) || empty($_POST['km'])){ ?>
         <p>Le parcour existe déjà.</p>
         <p><a href="index.php?page=5">Retour au formulaire</a></p>
 <?php
+    }else if($parcoursManager->exist($vil2, $vil1)){ ?>
+        <p>Le parcour existe déjà.</p>
+        <p><a href="index.php?page=5">Retour au formulaire</a></p>
+<?php
     }else{
         $parcours = new Parcours(array('par_km' => $_POST['km'], 'vil_num1' => $vil1, 'vil_num2' => $vil2));
         $ligne = $parcoursManager->add($parcours);

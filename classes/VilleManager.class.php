@@ -72,5 +72,18 @@ class VilleManager {
         return $listeVille;
     }
 
+    public function exist($vil_nom){
+        $sql = 'Select vil_num from ville where vil_num = :num';
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(":num", $vil_nom);
+        $requete->execute();
+        $retour = $requete->fetch(PDO::FETCH_ASSOC);
+        
+        if($retour != false){
+            $retour = true;
+        }
+        return $retour;
+    }
+
 }
 ?>
