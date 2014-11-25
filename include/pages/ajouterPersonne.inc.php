@@ -79,7 +79,7 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
 		}
 	}
 }else{
-	$_SESSION['pers'] = new Personne(array('per_nom' => $_POST['nom'], 'per_prenom' => $_POST['prenom'], 'per_tel' => $_POST['tel'], 'per_mail' => $_POST['mail'], 'per_login' => $_POST['login'], 'per_pwd' => $_POST['mdp'])); 
+	$_SESSION['pers'] = new Personne(array('per_nom' => $_POST['nom'], 'per_prenom' => $_POST['prenom'], 'per_tel' => $_POST['tel'], 'per_mail' => $_POST['mail'], 'per_login' => $_POST['login'], 'per_pwd' => sha1($_POST['mdp'].SALT))); 
 	       	
 	        //Si la perssonne = etudiant
 	        if($_POST['type'] == "etudiant") { ?>
