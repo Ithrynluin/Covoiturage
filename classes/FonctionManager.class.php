@@ -33,7 +33,7 @@ class FonctionManager{
 		$requete=$this->db->prepare($sql);
 		$requete->bindValue(":num", $num);
 		$requete->execute();
-		$value = $requete->fetch(PDO::ASSOC);
+		$value = $requete->fetch(PDO::FETCH_ASSOC);
 		$fonction = new Fonction($value);
 		$requete->closeCursor();
 		

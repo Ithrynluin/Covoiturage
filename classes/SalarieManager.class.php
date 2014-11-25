@@ -30,6 +30,22 @@ class SalarieManager{
 		
 		return $listeSalaries;
 	}
+	
+	public function getSalarieNum($num){
+        $sql = "SELECT per_num, sal_telprof, fon_num
+                FROM salarie WHERE per_num = :num";
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(":num", $num);
+        $requete->execute();
+        $ligne = $requete->fetch(PDO::FETCH_ASSOC);
+        if(!$ligne){
+            $salarie = false;
+        }else{
+            $salarie = new Salarie($ligne);
+        }
+        
+        return $salarie;
+    }
     
     public function delete($num){
         $sql = 'DELETE FROM salarie WHERE per_num = :num';

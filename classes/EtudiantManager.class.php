@@ -30,6 +30,22 @@ class EtudiantManager{
 		
 		return $listeEtudiants;
 	}
+	
+	public function getEtudiantNum($num){
+        $sql = "SELECT per_num, dep_num, div_num
+                FROM etudiant WHERE per_num = :num";
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(":num", $num);
+        $requete->execute();
+        $ligne = $requete->fetch(PDO::FETCH_ASSOC);
+        if(!$ligne){
+            $etudiant = false;
+        }else{
+            $etudiant = new Etudiant($ligne);
+        }
+        
+        return $etudiant;
+    }
     
     public function delete($num){
         $sql = 'DELETE FROM etudiant WHERE per_num = :num';
