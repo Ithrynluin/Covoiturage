@@ -72,18 +72,33 @@ class PersonneManager{
     }
 	
 	public function isEtudiant($num) {
-		$sql = "SELECT COUNT(*) FROM etudiant WHERE per_num = :num";
+		$sql = "SELECT * FROM etudiant WHERE per_num = :num";
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(":num", $num);
 		$requete->execute();
 		$ligne = $requete->fetch(PDO::FETCH_ASSOC);
-		if($ligne == 0) {
+		if($ligne == false) {
 			$etudiant = false;
 		}else {
 			$etudiant = true;
 		}
 		
 		return $etudiant;
+	}
+	
+	public function isSalarie($num) {
+		$sql = "SELECT * FROM salarie WHERE per_num = :num";
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(":num", $num);
+		$requete->execute();
+		$ligne = $requete->fetch(PDO::FETCH_ASSOC);
+		if($ligne == false) {
+			$salarie = false;
+		}else {
+			$salarie = true;
+		}
+		
+		return $salarie;
 	}
 }
 ?>

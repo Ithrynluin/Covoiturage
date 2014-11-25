@@ -21,7 +21,17 @@ $nb=count($listePersonnes);
 		<td>
 			<?php
 			if($personneManager->isEtudiant($value->getPer_num())) {
-				echo $value->getPer_num()." ok ";
+				?>
+				<a href="DetailEtudiant.inc.php">
+				<?php
+				echo $value->getPer_num();
+				?></a><?php
+			} else if($personneManager->isSalarie($value->getPer_num())) {
+				?>
+				<a href="DetailSalarie.inc.php">
+				<?php
+				echo $value->getPer_num();
+				?></a><?php
 			} else {
 				echo $value->getPer_num();
 			}
