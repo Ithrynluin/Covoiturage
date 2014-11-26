@@ -3,7 +3,7 @@ $pdo = new Mypdo();
 
 if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || empty($_POST['mail']) || empty($_POST['login']) || empty($_POST['mdp']) || empty($_POST['type'])){
 	//Vérification que les données ont bien été complètement rempli dans chaque formulaire (seul la zone du téléphone professionnel peut être vide après le 1er formulaire)
-	if(empty($_POST['telpro'])) { ?>
+	if(empty($_POST['telpro']) && empty($_POST['annee'])) { ?>
 		<h1>Ajouter une personne</h1> <!-- titre de la page -->
 		
 		<form action="index.php?page=1" method="post">
