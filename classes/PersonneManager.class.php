@@ -25,6 +25,22 @@ class PersonneManager{
 		}
 		return $id;
 	}
+    
+    public function update($personne){
+        $sql = "Update personne set per_nom = :nom, per_prenom = :prenom, 
+                per_tel = :tel, per_mail = :mail, per_login = :login, per_pwq = :pwd 
+                whare per_num = :num";
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(':nom', $personne->getPer_nom());
+        $requete->bindValue(':prenom', $personne->getPer_prenom());
+        $requete->bindValue(':tel', $personne->getPer_tel());
+        $requete->bindValue(':mail', $personne->getPer_mail());
+        $requete->bindValue(':login', $personne->getPer_login());
+        $requete->bindValue(':pwd', $personne->getPer_pwd());
+        $requete->bindValue(":num", $personne->getPer_num());
+        $retour=$requete->execute();
+        return $retour;
+    }
 	
 	public function getAllPersonne() {
 		$listePersonnes = array();
