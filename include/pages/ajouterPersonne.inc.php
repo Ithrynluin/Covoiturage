@@ -82,7 +82,7 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
 		}else{ ?>
 		    <p>Il existe déjà une personne avec se login.</p>
 		    <a href="index.php?page=1" >Retour au formulaire</a>
-<?php   }
+<?php    }
 	}
 }else{
 	$_SESSION['pers'] = new Personne(array('per_nom' => $_POST['nom'], 'per_prenom' => $_POST['prenom'], 'per_tel' => $_POST['tel'], 'per_mail' => $_POST['mail'], 'per_login' => $_POST['login'], 'per_pwd' => sha1($_POST['mdp'].SALT))); 
