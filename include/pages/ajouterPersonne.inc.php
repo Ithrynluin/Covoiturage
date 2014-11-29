@@ -41,42 +41,48 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
 	} else {
 		//ajout dans la table personne
 		$personneManager = new PersonneManager($pdo);
-    	$retour = $personneManager->add($_SESSION['pers']);
-    	if($retour == 0){?>
-      		<p>Erreur : La personne <?php echo $_POST['nom']; ?> n'a pas été ajoutée.</p>
-		<?php } else {
-			$perNum= $retour;
-			
-			//ajout dans la table étudiant
-			if(!empty($_POST['annee']) && !empty($_POST['departement'])) { ?>
-				<h1>Ajouter un étudiant</h1> <!-- titre de la page -->
-				
-				<?php
-				$etudiant = new Etudiant(array('per_num' => $perNum,'dep_num' => $_POST['departement'], 'div_num' => $_POST['annee']));
-				$etudiantManager = new EtudiantManager($pdo);
-				$retour = $etudiantManager->add($etudiant);
-				if($retour == 0) { ?>
-					<p>Erreur ! L'étudiant n'a pas été ajouté</p>
-				<?php } else { ?>
-					<p>L'étudiant a bien été ajouté</p>
-				<?php }
-		 	}
-		 	
-			//ajout dans la table salrié
-			if(!empty($_POST['telpro']) && !empty($_POST['fonction'])) { ?>
-				<h1>Ajouter un salarié</h1> <!-- titre de la page -->
-				
-				<?php
-				$salarie = new Salarie(array('per_num' => $perNum,'sal_telprof' => $_POST['telpro'], 'fon_num' => $_POST['fonction']));
-				$salarieManager = new SalarieManager($pdo);
-				$retour = $salarieManager->add($salarie);
-				if($retour == 0) { ?>
-					<p>Erreur ! Le salarié n'a pas été ajouté</p>
-				<?php } else { ?>
-					<p>Le salarié a bien été ajouté</p>
-				<?php }
-			}
-		}
+        $existe = $personneManager->getPersonneLogin($_SESSION['pers']->getPer_login());
+        if(!$existe){
+        	$retour = $personneManager->add($_SESSION['pers']);
+        	if($retour == 0){?>
+          		<p>Erreur : La personne <?php echo $_POST['nom']; ?> n'a pas été ajoutée.</p>
+    		<?php } else {
+    			$perNum= $retour;
+    			
+    			//ajout dans la table étudiant
+    			if(!empty($_POST['annee']) && !empty($_POST['departement'])) { ?>
+    				<h1>Ajouter un étudiant</h1> <!-- titre de la page -->
+    				
+    				<?php
+    				$etudiant = new Etudiant(array('per_num' => $perNum,'dep_num' => $_POST['departement'], 'div_num' => $_POST['annee']));
+    				$etudiantManager = new EtudiantManager($pdo);
+    				$retour = $etudiantManager->add($etudiant);
+    				if($retour == 0) { ?>
+    					<p>Erreur ! L'étudiant n'a pas été ajouté</p>
+    				<?php } else { ?>
+    					<p>L'étudiant a bien été ajouté</p>
+    				<?php }
+    		 	}
+    		 	
+    			//ajout dans la table salrié
+    			if(!empty($_POST['telpro']) && !empty($_POST['fonction'])) { ?>
+    				<h1>Ajouter un salarié</h1> <!-- titre de la page -->
+    				
+    				<?php
+    				$salarie = new Salarie(array('per_num' => $perNum,'sal_telprof' => $_POST['telpro'], 'fon_num' => $_POST['fonction']));
+    				$salarieManager = new SalarieManager($pdo);
+    				$retour = $salarieManager->add($salarie);
+    				if($retour == 0) { ?>
+    					<p>Erreur ! Le salarié n'a pas été ajouté</p>
+    				<?php } else { ?>
+    					<p>Le salarié a bien été ajouté</p>
+    				<?php }
+    			}
+    	    }
+		}else{ ?>
+		    <p>Il existe déjà une personne avec se login.</p>
+		    <a href="index.php?page=1" >Retour au formulaire</a>
+<?php   }
 	}
 }else{
 	$_SESSION['pers'] = new Personne(array('per_nom' => $_POST['nom'], 'per_prenom' => $_POST['prenom'], 'per_tel' => $_POST['tel'], 'per_mail' => $_POST['mail'], 'per_login' => $_POST['login'], 'per_pwd' => sha1($_POST['mdp'].SALT))); 
