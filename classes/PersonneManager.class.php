@@ -118,11 +118,24 @@ class PersonneManager{
 	}
     
     public function delete($num){
-        $sql = 'DELETE FROM personne WHERE per_num = :num';
+    	$retourParcours=$this->deleteParcours($num);
+		if($retourParcours != 0) {
+			$sql = 'DELETE FROM personne WHERE per_num = :num';
+	        $requete = $this->db->prepare($sql);
+	        $requete->bindValue(":num", $num);
+	        $retour = $requete->execute();
+		} else {
+			$retour = $retourParcours;
+		}
+        return $retour;
+    }
+	
+	public function deleteParcours($num) {
+		$sql = 'DELETE FROM propose WHERE per_num = :num';
         $requete = $this->db->prepare($sql);
         $requete->bindValue(":num", $num);
         $retour = $requete->execute();
         return $retour;
-    }
+	}
 }
 ?>
