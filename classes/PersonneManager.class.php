@@ -28,8 +28,8 @@ class PersonneManager{
     
     public function update($personne){
         $sql = "Update personne set per_nom = :nom, per_prenom = :prenom, 
-                per_tel = :tel, per_mail = :mail, per_login = :login, per_pwq = :pwd 
-                whare per_num = :num";
+                per_tel = :tel, per_mail = :mail, per_login = :login, per_pwd = :pwd 
+                where per_num = :num";
         $requete = $this->db->prepare($sql);
         $requete->bindValue(':nom', $personne->getPer_nom());
         $requete->bindValue(':prenom', $personne->getPer_prenom());

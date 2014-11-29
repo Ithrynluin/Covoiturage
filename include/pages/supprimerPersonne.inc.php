@@ -20,10 +20,10 @@ if(empty($_POST['supp'])){ ?>
             echo $value -> getPer_num();
 		  ?></td>
 			<td><?php
-            echo $value -> getPer_prenom();
+            echo $value -> getPer_nom();
 		  ?></td>
 			<td><?php
-            echo $value -> getPer_nom();
+            echo $value -> getPer_prenom();
              ?></td>
 		      <td>
 		          <button name="supp" type="submit" value=<?php echo '"'.$value->getPer_num().'"'; ?>>Supprimer</button>

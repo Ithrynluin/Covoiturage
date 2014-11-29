@@ -22,10 +22,10 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
             echo $value -> getPer_num();
           ?></td>
             <td><?php
-            echo $value -> getPer_prenom();
+            echo $value -> getPer_nom();
           ?></td>
             <td><?php
-            echo $value -> getPer_nom();
+            echo $value -> getPer_prenom();
              ?></td>
               <td>
                   <button name="mod" type="submit" value=<?php echo '"'.$value->getPer_num().'"'; ?>>Modifier</button>
@@ -45,23 +45,23 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
     <form action="index.php?page=3" method="post">
         <p>
             <label for="nom">Nom* :</label>
-            <input type="text" id="nom" name="nom" class="champ" value=<?php echo '"'.$personne->getPer_nom().'"' ?> />
+            <input type="text" id="nom" name="nom" class="champ" value=<?php echo '"'.$personne->getPer_nom().'"'; ?> onFocus="if (this.value == 'Dupont') this.value = ''"/>
         </p>
         <p>
             <label for="nom">Prénom* :</label>
-            <input type="text" id="prenom" name="prenom" class="champ" value=<?php echo '"'.$personne->getPer_prenom().'"' ?> />
+            <input type="text" id="prenom" name="prenom" class="champ" value=<?php echo '"'.$personne->getPer_prenom().'"'; ?> />
         </p>
         <p>
             <label for="tel">Téléphone* : </label>
-            <input type="text" id="tel" name="tel" class="champ" value=<?php echo '"'.$personne->getPer_tel().'"' ?>/>
+            <input type="text" id="tel" name="tel" class="champ" value=<?php echo '"'.$personne->getPer_tel().'"'; ?>/>
         </p>
         <p>
             <label for="mail">Mail* : </label>
-            <input type="email" id="mail" name="mail" class="champ" value=<?php echo '"'.$personne->getPer_mail().'"' ?>/>
+            <input type="text" id="mail" name="mail" class="champ" value=<?php echo '"'.$personne->getPer_mail().'"'; ?>/>
         </p>
         <p>
             <label for="login">Login* : </label>
-            <input type="text" id="login" name="login" class="champ" value=<?php echo '"'.$personne->getPer_login().'"' ?>/>
+            <input type="text" id="login" name="login" class="champ" value=<?php echo '"'.$personne->getPer_login().'"'; ?>/>
         </p>
         <p>
             <label for="mdpNew">Nouveau mot de passe : </label>
@@ -104,13 +104,22 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
              'per_prenom' => $_POST['prenom'], 'per_tel' => $_POST['tel'], 
              'per_mail' => $_POST['mail'], 'per_login' => $_POST['login'], 
              'per_pwd' => $mdp, "per_num" => $_SESSION['mod']));
+             $retour = $personneManager->update($personne);
              
-             $personneManager->update($personne);
-   }
+             if($retour == 0){ ?>
+                 <p>Erreur lors de la mise à jour.</p>
+                 <p><a href="index.php?page=3">Retour modification</a></p>
+<?php        }else{ ?>
+                <p>La mise a bien été effectué</p>
+<?php        }
+             echo $retour."ee<br><pre>";
+             var_dump($personne);
+             print_r($pdo);
+        }
+        echo "</pre>jjjjjjjjj";
     }
+    echo "iiiiiiiiiii";
 }else{ ?>
     <p>Tous les champs obligatoire ne sont pas rempli</p>
 <?php
 } ?>
-        
-?>
