@@ -82,5 +82,13 @@ class ParcoursManager{
         }
         return $resultat;
     }
+
+	public function delete($pnum) {
+		$sql = 'DELETE FROM propose WHERE per_num = :pnum';
+        $requete = $this->db->prepare($sql);
+        $requete->bindValue(":pnum", $pnum);
+        $retour = $requete->execute();
+        return $retour;
+	}
     
 }

@@ -45,17 +45,25 @@ if(empty($_POST['supp'])){ ?>
         $retour = $salarieManager->delete($num);
     }
     
+	if($retour != 0) {
+		$parcoursManager = new ParcoursManager($pdo);
+		$retour = $parcoursManager->delete($num);
+	} else { ?>
+        <p>Erreur lors de la suppression de la personne (table étudiant/salarié)</p>
+	<?php		
+	}
+	
     if($retour != 0){
         $retour = $personneManager->delete($num);
     }else{ ?>
-        <p>Erreur lors de la suppression de la personne</p>
-<?php
+        <p>Erreur lors de la suppression de la personne (table propose)</p>
+	<?php
     }
     
     if($retour != 0){
         header("Location: http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
     }else{ ?>
-        <p>Erreur lors de la suppression de la personne</p>
+        <p>Erreur lors de la suppression de la personne (table personne)</p>
 <?php
     }
     
