@@ -112,7 +112,7 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
                  <p>Erreur lors de la mise à jour.</p>
                  <p><a href="index.php?page=3">Retour modification</a></p>
 <?php        }else{ ?>
-                <p>La mise a bien été effectué</p>
+                <p>La mise à jour a bien été effectuée</p>
 <?php        }
         }else{ ?>
             <p>Il existe déjà une personne avec se login.</p>
