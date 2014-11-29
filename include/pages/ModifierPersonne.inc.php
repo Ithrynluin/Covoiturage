@@ -45,7 +45,7 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
     <form action="index.php?page=3" method="post">
         <p>
             <label for="nom">Nom* :</label>
-            <input type="text" id="nom" name="nom" class="champ" value=<?php echo '"'.$personne->getPer_nom().'"'; ?> onFocus="if (this.value == 'Dupont') this.value = ''"/>
+            <input type="text" id="nom" name="nom" class="champ" value=<?php echo '"'.$personne->getPer_nom().'"'; ?> />
         </p>
         <p>
             <label for="nom">Prénom* :</label>
@@ -100,7 +100,7 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
              }else{
                  $mdp = sha1($_POST['mdpNew'].SALT);
              }
-             new Personne(array('per_nom' => $_POST['nom'], 
+             $personne = new Personne(array('per_nom' => $_POST['nom'], 
              'per_prenom' => $_POST['prenom'], 'per_tel' => $_POST['tel'], 
              'per_mail' => $_POST['mail'], 'per_login' => $_POST['login'], 
              'per_pwd' => $mdp, "per_num" => $_SESSION['mod']));
@@ -112,13 +112,8 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
 <?php        }else{ ?>
                 <p>La mise a bien été effectué</p>
 <?php        }
-             echo $retour."ee<br><pre>";
-             var_dump($personne);
-             print_r($pdo);
         }
-        echo "</pre>jjjjjjjjj";
     }
-    echo "iiiiiiiiiii";
 }else{ ?>
     <p>Tous les champs obligatoire ne sont pas rempli</p>
 <?php
