@@ -7,7 +7,7 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
     && empty($_POST['mail']) && empty($_POST['login']) && empty($_POST['mdpNew']) && empty($_POST['mdpConf'])
     && empty($_POST['mdp'])){ ?>
 <form action="index.php?page=3" method="post">
-    <table border=1>
+    <table>
         <tr>
             <th>Numéro</th>
             <th>Nom</th>
@@ -28,7 +28,7 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
             echo $value -> getPer_prenom();
              ?></td>
               <td>
-                  <button name="mod" type="submit" value=<?php echo '"'.$value->getPer_num().'"'; ?>>Modifier</button>
+                  <button name="mod" type="submit" class="bouton" value=<?php echo '"'.$value->getPer_num().'"'; ?>>Modifier</button>
               </td>
         </tr>
         <?php

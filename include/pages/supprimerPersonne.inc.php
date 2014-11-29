@@ -5,7 +5,7 @@ $personneManager = new PersonneManager($pdo);
 $listePersonnes = $personneManager -> getAllPersonne();
 if(empty($_POST['supp'])){ ?>
 <form action="index.php?page=4" method="post">
-	<table border=1>
+	<table border=>
 		<tr>
 			<th>Numéro</th>
 			<th>Nom</th>
@@ -26,7 +26,7 @@ if(empty($_POST['supp'])){ ?>
             echo $value -> getPer_prenom();
              ?></td>
 		      <td>
-		          <button name="supp" type="submit" value=<?php echo '"'.$value->getPer_num().'"'; ?>>Supprimer</button>
+		          <button name="supp" type="submit" class="bouton" value=<?php echo '"'.$value->getPer_num().'"'; ?>>Supprimer</button>
 		      </td>
 		</tr>
 		<?php
