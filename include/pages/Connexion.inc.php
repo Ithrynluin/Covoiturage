@@ -31,7 +31,7 @@ if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
     
     $bonneRep = $_SESSION['nb1'] + $_SESSION['nb2'];
     if($bonneRep != $_POST['resultat']){ ?>
-        <p>La réponse n'est pas corecte</p>
+        <p><img src="image/erreur.png" /> La réponse n'est pas corecte</p>
         <p><a href="index.php?page=11">Retour connexion</a></p>
 <?php
     }else{
@@ -41,7 +41,7 @@ if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
     
         if(!$personne){?>
         <p>
-    	   Le nom d'utilisateur est invalide
+    	   <img src="image/erreur.png" /> Le nom d'utilisateur est invalide
         </p>
         <p>
     	   <a href="index.php?page=11">Retour connexion</a>
@@ -51,7 +51,7 @@ if(empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['resultat'])){
             $pwd = $_POST['pass'];
             $pwd = sha1($pwd.SALT);
             if($pwd != $personne->getPer_pwd()){ ?>
-                <p>Le nom de la personne et/ou le mot de passe sont incorrecte</p>
+                <p><img src="image/erreur.png" /> Le nom de la personne et/ou le mot de passe sont incorrecte</p>
                 <p><a href="index.php?page=11">Retour connexion</a></p>
 <?php       }else{ 
                 $_SESSION['utilisateur'] = $_POST['user'];

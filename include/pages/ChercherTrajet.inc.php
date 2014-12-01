@@ -80,7 +80,7 @@ if(empty($_POST['vildepart']) && empty($_POST['vilarr']) && empty($_POST['depart
     $personneManager = new PersonneManager($pdo);
     
     if(empty($liste)){ ?>
-    <p>Aucun trajet trouvé</p>    
+    <p><img src="image/erreur.png" /> Aucun trajet trouvé</p>    
 <?php
     }else{
 ?>

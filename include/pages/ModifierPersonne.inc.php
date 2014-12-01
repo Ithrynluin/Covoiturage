@@ -87,13 +87,13 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
     $pwd = $_POST['mdp'];
     $pwd = sha1($pwd.SALT);
     if($pwd != $personne->getPer_pwd()){ ?>
-        <p>Le mot de passe est incorrecte</p>
+        <p><img src="image/erreur.png" /> Le mot de passe est incorrecte</p>
         <p><a href="index.php?page=3">Retour modification</a></p>
 <?php
     }else{
         $r = $personneManager->getPersonneLogin($_POST['login']);   
         if($_POST['mdpNew'] != $_POST['mdpConf']){ ?>
-            <p>Le mot de passe de confirmation ne correspond pas au nouveau mot de passe.</p>
+            <p><img src="image/erreur.png" /> Le mot de passe de confirmation ne correspond pas au nouveau mot de passe.</p>
             <p><a href="index.php?page=3">Retour modification</a></p>
 <?php   }else if(($_POST['login'] != $personne->getPer_login() && !$r) || $_POST['login' ] == $personne->getPer_login()){
             if(empty($_POST['mdpNew'])){
@@ -109,13 +109,13 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
             $retour = $personneManager->update($personne);
                  
             if($retour == 0){ ?>
-                 <p>Erreur lors de la mise à jour.</p>
+                 <p><img src="image/erreur.png" /> Erreur lors de la mise à jour.</p>
                  <p><a href="index.php?page=3">Retour modification</a></p>
 <?php        }else{ ?>
-                <p>La mise à jour a bien été effectuée</p>
+                <p><img src="image/valid.png"/> La mise à jour a bien été effectuée</p>
 <?php        }
         }else{ ?>
-            <p>Il existe déjà une personne avec se login.</p>
+            <p><img src="image/erreur.png" /> Il existe déjà une personne avec se login.</p>
             <a href="index.php?page=3" >Retour au formulaire</a>
 <?php   }
     }

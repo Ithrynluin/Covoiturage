@@ -80,14 +80,14 @@ if(empty($_POST['vildepart']) && empty($_POST['vilarr']) && empty($_POST['dateDe
         $proposeManager = new ProposeManager($pdo);
         $retour=$proposeManager->add($propose);
         if($retour != 0){ ?>
-            <p>Proposition ajouter</p>
+            <p><img src="image/valid.png"/> Proposition ajouter</p>
 <?php   }else{ ?>
-            <p>Erreur lors de l'insertion.</p>
+            <p><img src="image/erreur.png" /> Erreur lors de l'insertion.</p>
 <?php   }
     }?>
 <?php
 }else if(empty($_POST['nbPlaces'])){ ?>
-    <p>Le nombre de places ne peut pas être égale à 0</p>
+    <p><img src="image/erreur.png" /> Le nombre de places ne peut pas être égale à 0</p>
     <p><a href="index.php?page=9">Retour au formulaire</a></p>
 <?php
 }

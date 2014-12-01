@@ -45,7 +45,7 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
         if(!$existe){
         	$retour = $personneManager->add($_SESSION['pers']);
         	if($retour == 0){?>
-          		<p>Erreur : La personne <?php echo $_POST['nom']; ?> n'a pas été ajoutée.</p>
+          		<p><img src="image/erreur.png" /> Erreur : La personne <?php echo $_POST['nom']; ?> n'a pas été ajoutée.</p>
     		<?php } else {
     			$perNum= $retour;
     			
@@ -58,9 +58,9 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
     				$etudiantManager = new EtudiantManager($pdo);
     				$retour = $etudiantManager->add($etudiant);
     				if($retour == 0) { ?>
-    					<p>Erreur ! L'étudiant n'a pas été ajouté</p>
+    					<p><img src="image/erreur.png" /> Erreur ! L'étudiant n'a pas été ajouté</p>
     				<?php } else { ?>
-    					<p>L'étudiant a bien été ajouté</p>
+    					<p><img src="image/valid.png"/> L'étudiant a bien été ajouté</p>
     				<?php }
     		 	}
     		 	
@@ -73,9 +73,9 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
     				$salarieManager = new SalarieManager($pdo);
     				$retour = $salarieManager->add($salarie);
     				if($retour == 0) { ?>
-    					<p>Erreur ! Le salarié n'a pas été ajouté</p>
+    					<p><img src="image/erreur.png" /> Erreur ! Le salarié n'a pas été ajouté</p>
     				<?php } else { ?>
-    					<p>Le salarié a bien été ajouté</p>
+    					<p><img src="image/valid.png"/> Le salarié a bien été ajouté</p>
     				<?php }
     			}
     	    }
