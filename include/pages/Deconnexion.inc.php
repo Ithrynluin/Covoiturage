@@ -1,6 +1,5 @@
 <?php
     require_once("include/functions.inc.php");
-	$_SESSION['utilisateur'] = "";
-    $_SESSION['per_num'] = "";
+	session_destroy();
     header("Location: "."index.php" );
 ?>
