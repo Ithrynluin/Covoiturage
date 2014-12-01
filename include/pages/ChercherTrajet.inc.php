@@ -39,7 +39,7 @@ if(empty($_POST['vildepart']) && empty($_POST['vilarr']) && empty($_POST['depart
            </tr>
            <tr>
                <td><label>Date de départ :</label></td>
-               <td> <input type="date" id="depart" name="depart" class="champ" value=<?php echo '"'.date("d/m/Y").'"'; ?>/></td>
+               <td> <input type="text" id="depart" name="depart" class="champ" value=<?php echo '"'.date("d/m/Y").'"'; ?>/></td>
                
                <td><label>Précision :</label></td>
                <td>

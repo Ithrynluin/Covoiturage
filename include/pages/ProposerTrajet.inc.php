@@ -42,13 +42,13 @@ if(empty($_POST['vildepart']) && empty($_POST['vilarr']) && empty($_POST['dateDe
                 <label for="dateDep">Date de départ : </label>
             </td>
             <td>
-                <input type="date" id="dateDep" name="dateDep" class="champ" value=<?php echo '"'.date("d/m/Y").'"'; ?>/>
+                <input type="text" id="dateDep" name="dateDep" class="champ" value=<?php echo '"'.date("d/m/Y").'"'; ?>/>
             </td>
             <td>
                 <label for="hDep">Heure de départ : </label>
             </td>
             <td>
-                <input type="time" id="hDep" name="hDep" class="champ" value=<?php echo '"'.date("H:i:s").'"'; ?>/>
+                <input type="text" id="hDep" name="hDep" class="champ" value=<?php echo '"'.date("H:i:s").'"'; ?>/>
             </td>
         </tr>
         <tr>
