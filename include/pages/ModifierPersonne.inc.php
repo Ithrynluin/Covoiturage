@@ -4,7 +4,7 @@ $pdo = new Mypdo();
 $personneManager = new PersonneManager($pdo);
 $listePersonnes = $personneManager -> getAllPersonne();
 if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty($_POST['prenom']) 
-    && empty($_POST['mail']) && empty($_POST['login']) && empty($_POST['mdpNew']) && empty($_POST['mdpConf'])
+    && empty($_POST['mail']) && empty($_POST['mdpNew']) && empty($_POST['mdpConf'])
     && empty($_POST['mdp'])){ ?>
 <form action="index.php?page=3" method="post">
     <table>
@@ -38,7 +38,7 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
 </form>
 <?php
 }else if(!empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty($_POST['prenom']) 
-    && empty($_POST['mail']) && empty($_POST['login']) && empty($_POST['mdpNew']) && empty($_POST['mdpConf'])
+    && empty($_POST['mail']) && empty($_POST['mdpNew']) && empty($_POST['mdpConf'])
     && empty($_POST['mdp'])){
     $personne = $personneManager->getPersonneNum($_POST['mod']);
     $_SESSION['mod'] = $_POST['mod']; ?>
@@ -60,10 +60,6 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
             <input type="text" id="mail" name="mail" class="champ" value=<?php echo '"'.$personne->getPer_mail().'"'; ?>/>
         </p>
         <p>
-            <label for="login">Login* : </label>
-            <input type="text" id="login" name="login" class="champ" value=<?php echo '"'.$personne->getPer_login().'"'; ?>/>
-        </p>
-        <p>
             <label for="mdpNew">Nouveau mot de passe : </label>
             <input type="password" id="mdpNew" name="mdpNew" class="champ"/>
         </p>
@@ -77,11 +73,12 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
         </p>
         <p>
             <input type="submit" value="Valider" class="bouton"/>
-        </p>       
+        </p>
+        <span>* : Champs obligatoire.</span>
     </form>
 <?php    
 }else if(empty($_POST['mod']) && !empty($_POST['nom']) && !empty($_POST['tel']) && !empty($_POST['prenom']) 
-    && !empty($_POST['mail']) && !empty($_POST['login']) && !empty($_POST['mdp'])){
+    && !empty($_POST['mail']) && !empty($_POST['mdp'])){
          
     $personne = $personneManager->getPersonneNum($_SESSION['mod']);
     $pwd = $_POST['mdp'];
@@ -91,11 +88,10 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
         <p><a href="index.php?page=3">Retour modification</a></p>
 <?php
     }else{
-        $r = $personneManager->getPersonneLogin($_POST['login']);   
         if($_POST['mdpNew'] != $_POST['mdpConf']){ ?>
             <p><img src="image/erreur.png" /> Le mot de passe de confirmation ne correspond pas au nouveau mot de passe.</p>
             <p><a href="index.php?page=3">Retour modification</a></p>
-<?php   }else if(($_POST['login'] != $personne->getPer_login() && !$r) || $_POST['login' ] == $personne->getPer_login()){
+<?php   }else{
             if(empty($_POST['mdpNew'])){
                 $mdp = sha1($_POST['mdp'].SALT);
             }else{
@@ -104,7 +100,7 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
             $personne = new Personne(array(
                  'per_nom' => $_POST['nom'], 
                  'per_prenom' => $_POST['prenom'], 'per_tel' => $_POST['tel'], 
-                 'per_mail' => $_POST['mail'], 'per_login' => $_POST['login'], 
+                 'per_mail' => $_POST['mail'], 
                  'per_pwd' => $mdp, "per_num" => $_SESSION['mod']));
             $retour = $personneManager->update($personne);
                  
@@ -114,12 +110,10 @@ if(empty($_POST['mod']) && empty($_POST['nom']) && empty($_POST['tel']) && empty
 <?php        }else{ ?>
                 <p><img src="image/valid.png"/> La mise à jour a bien été effectuée</p>
 <?php        }
-        }else{ ?>
-            <p><img src="image/erreur.png" /> Il existe déjà une personne avec se login.</p>
-            <a href="index.php?page=3" >Retour au formulaire</a>
-<?php   }
+        }
     }
 }else{ ?>
-    <p>Tous les champs obligatoire ne sont pas rempli</p>
+    <p><img src="image/erreur.png" /> Tous les champs obligatoire ne sont pas rempli</p>
+    <p><a href="index.php?page=3">Retour modification</a></p>
 <?php
 } ?>
