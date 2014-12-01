@@ -73,7 +73,7 @@ class VilleManager {
     }
 
     public function exist($vil_nom){
-        $sql = 'Select vil_num from ville where vil_num = :num';
+        $sql = 'Select vil_num from ville where vil_nom = :num';
         $requete = $this->db->prepare($sql);
         $requete->bindValue(":num", $vil_nom);
         $requete->execute();
