@@ -70,12 +70,12 @@ if(empty($_POST['vildepart']) && empty($_POST['vilarr']) && empty($_POST['depart
 }else if(empty($_POST['vildepart']) && !empty($_POST['vilarr']) && !empty($_POST['depart']) && isset($_POST['precision']) && isset($_POST['heure'])){
     $parcoursManager = new ParcoursManager($pdo);
     $parEtSens = $parcoursManager->getParcoursEtSensAvecVilles($_SESSION['vildepart'], $_POST['vilarr']);
-    $dateDebut = addJours($_POST['depart'], -$_POST['precision']);
-    $dateFin = addJours($_POST['depart'], $_POST['precision']);
+    $precision = $_POST['precision'];
+    $date = getEnglishDate($_POST['depart']);
     $heure = $_POST['heure'].":00:00";
     
     $proposeManager = new ProposeManager($pdo);
-    $liste = $proposeManager->getTrajetWithParam($parEtSens['parcours'], $dateDebut, $dateFin, $heure, $parEtSens['sens']);
+    $liste = $proposeManager->getTrajetWithParam($parEtSens['parcours'], $date, $precision, $heure, $parEtSens['sens']);
     
     $personneManager = new PersonneManager($pdo);
     

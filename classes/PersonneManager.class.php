@@ -9,11 +9,12 @@ class PersonneManager{
 	
 	public function add ($personne) {
 		$requete = $this->db->prepare(
-		'INSERT INTO personne(per_nom, per_prenom, per_tel, per_mail, per_pwd) VALUES (:nom, :prenom, :tel, :mail, :pwd);');
+		'INSERT INTO personne(per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd) VALUES (:nom, :prenom, :tel, :mail, :login, :pwd);');
 		$requete->bindValue(':nom', $personne->getPer_nom());
 		$requete->bindValue(':prenom', $personne->getPer_prenom());
 		$requete->bindValue(':tel', $personne->getPer_tel());
 		$requete->bindValue(':mail', $personne->getPer_mail());
+		$requete->bindValue(":login", $personne->getPer_login());
 		$requete->bindValue(':pwd', $personne->getPer_pwd());
 		
 		$retour=$requete->execute();
@@ -27,14 +28,13 @@ class PersonneManager{
     
     public function update($personne){
         $sql = "Update personne set per_nom = :nom, per_prenom = :prenom, 
-                per_tel = :tel, per_mail = :mail, per_login = :login, per_pwd = :pwd 
+                per_tel = :tel, per_mail = :mail, per_pwd = :pwd 
                 where per_num = :num";
         $requete = $this->db->prepare($sql);
         $requete->bindValue(':nom', $personne->getPer_nom());
         $requete->bindValue(':prenom', $personne->getPer_prenom());
         $requete->bindValue(':tel', $personne->getPer_tel());
         $requete->bindValue(':mail', $personne->getPer_mail());
-        $requete->bindValue(':login', $personne->getPer_login());
         $requete->bindValue(':pwd', $personne->getPer_pwd());
         $requete->bindValue(":num", $personne->getPer_num());
         $retour=$requete->execute();

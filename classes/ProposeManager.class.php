@@ -42,18 +42,19 @@ class ProposeManager{
         return $listeVille;
     }
     
-    public function getTrajetWithParam($par_num, $date_debut, $date_fin, $heure, $sens){
+    public function getTrajetWithParam($par_num, $date, $precision, $heure, $sens){
         $listeTrajet = array();    
-        $sql='SELECT * from propose 
+        $sql="SELECT * from propose 
                 Where par_num = :par_num 
-                AND pro_date BETWEEN :date_debut AND :date_fin 
+                AND pro_date BETWEEN date_add(:date, INTERVAL :precision1 Day) AND date_add(:date, INTERVAL :precision DAY) 
                 AND pro_time >= :pro_time 
-                AND pro_sens = :pro_sens';
+                AND pro_sens = :pro_sens";
         
        $requete = $this->db->prepare($sql);
        $requete->bindValue(":par_num", $par_num);
-       $requete->bindValue(":date_debut", $date_debut);
-       $requete->bindValue(":date_fin", $date_fin);
+       $requete->bindValue(":date", $date);
+       $requete->bindValue(":precision", $precision);
+	   $requete->bindValue(":precision1", -$precision);
        $requete->bindValue(":pro_time", $heure);
        $requete->bindValue(":pro_sens", $sens);
        $requete->execute();
