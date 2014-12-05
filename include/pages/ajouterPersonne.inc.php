@@ -29,8 +29,8 @@ if(empty($_POST['nom']) || empty($_POST['tel']) || empty($_POST['prenom']) || em
 		    </table>
 		    <p>
 		    	<label for="categorie">Catégorie : </label>
-		    	<input type="radio" name="type" value="etudiant" />Etudiant
-		    	<input type="radio" name="type" value="personnel" />Personnel
+		    	<input type="radio" name="type" value="etudiant" id="etudiant"/><label for="etudiant">Etudiant</label>
+		    	<input type="radio" name="type" value="personnel" id="personnel"/><label for="personnel">Personnel</label>
 		    </p>
 		    
 		    <input type="submit" value="Valider" class="bouton"/>
